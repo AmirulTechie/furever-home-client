@@ -1,0 +1,10 @@
+<svg width="240" height="36" viewBox="0 0 240 36" role="img" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="36" height="36" rx="9" fill="#EF9F27"/>
+  <circle cx="13" cy="11" r="3.5" fill="#fff" opacity="0.9"/>
+  <circle cx="23" cy="11" r="3.5" fill="#fff" opacity="0.9"/>
+  <circle cx="7"  cy="17" r="2.8" fill="#fff" opacity="0.9"/>
+  <circle cx="29" cy="17" r="2.8" fill="#fff" opacity="0.9"/>
+  <path d="M18 33 C10 33 6 26 8 21 C10 17 13 16 18 16 C23 16 26 17 28 21 C30 26 26 33 18 33Z" fill="#fff" opacity="0.9"/>
+  <text x="46" y="14" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#2C2C2A" letter-spacing="-0.2">FurEver</text>
+  <text x="46" y="29" font-family="Arial, sans-serif" font-size="11" font-weight="400" fill="#854F0B" letter-spacing="2">HOME</text>
+</svg>
