@@ -28,8 +28,7 @@ const pets = [
     species: "Dog",
     age: "2 years",
     location: "Chittagong",
-    bg: "from-amber-100 to-orange-50",
-    emoji: "🐕",
+    image: "/assets/melissa-dog.jpg",
     badgeColor: "bg-amber-400 text-amber-900",
   },
   {
@@ -38,34 +37,30 @@ const pets = [
     species: "Cat",
     age: "1 year",
     location: "Dhaka",
-    bg: "from-teal-100 to-emerald-50",
-    emoji: "🐈",
+    image: "/assets/alexas-cat.jpg",
     badgeColor: "bg-teal-500 text-white",
   },
   {
     id: 3,
-    name: "Mochi",
-    species: "Rabbit",
+    name: "Max",
+    species: "Dog",
     age: "8 months",
     location: "Sylhet",
-    bg: "from-rose-100 to-pink-50",
-    emoji: "🐇",
+    image: "/assets/printeboek-dog.jpg",
     badgeColor: "bg-rose-400 text-white",
   },
   {
     id: 4,
-    name: "Rio",
-    species: "Bird",
+    name: "Rocky",
+    species: "Dog",
     age: "3 years",
     location: "Rajshahi",
-    bg: "from-violet-100 to-purple-50",
-    emoji: "🦜",
+    image: "/assets/pexels-sandeep-kumar-1891325-19927175.jpg",
     badgeColor: "bg-violet-400 text-white",
   },
 ];
 
 const cardVariants = {
-  // the front active card
   active: {
     x: 0,
     y: 0,
@@ -75,7 +70,6 @@ const cardVariants = {
     opacity: 1,
     transition: { type: "spring", stiffness: 300, damping: 28 },
   },
-  // cards behind — staggered offset
   behind: (i) => ({
     x: i * 14,
     y: i * -10,
@@ -85,7 +79,6 @@ const cardVariants = {
     opacity: 1 - i * 0.1,
     transition: { type: "spring", stiffness: 300, damping: 28 },
   }),
-  // card being swiped out to the left
   exit: {
     x: -340,
     y: 40,
@@ -100,14 +93,6 @@ const Banner = () => {
   const [cards, setCards] = useState(pets);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  // auto-cycle every 3s
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (!isAnimating) handleNext;
-    }, 3000);
-    return () => clearInterval(timer);
-  }, [cards, isAnimating]);
-
   const handleNext = () => {
     if (isAnimating) return;
     setIsAnimating(true);
@@ -118,12 +103,20 @@ const Banner = () => {
     setTimeout(() => setIsAnimating(false), 420);
   };
 
+  // ✓ fixed: handleNext() was missing () in the previous version
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (!isAnimating) handleNext();
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [cards, isAnimating]);
+
   return (
     <section className="relative bg-[#F7F5F0] overflow-hidden min-h-[calc(100vh-64px)] flex items-center">
 
       <PawPrint className="absolute -top-10 -left-10 w-64 h-64 text-amber-100 rotate-[-15deg]" />
-      <PawPrint className="absolute bottom-10 right-0 w-80 h-80 text-amber-100 rotate-[20deg]" />
-      <PawPrint className="absolute top-1/2 left-1/3 w-24 h-24 text-amber-50 rotate-[10deg] opacity-60" />
+      <PawPrint className="absolute bottom-10 right-0 w-80 h-80 text-amber-100 rotate-20deg" />
+      <PawPrint className="absolute top-1/2 left-1/3 w-24 h-24 text-amber-50 rotate-10deg opacity-60" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -180,11 +173,9 @@ const Banner = () => {
           <div className="relative flex justify-center lg:justify-end">
             <div className="relative w-72 h-96">
 
-              {/* decorative circles behind cards */}
               <div className="absolute top-1/2 right-0 w-56 h-56 bg-teal-100 rounded-full opacity-40 -translate-y-1/2 translate-x-8 z-0" />
               <div className="absolute bottom-0 left-0 w-36 h-36 bg-amber-100 rounded-full opacity-50 translate-y-6 -translate-x-4 z-0" />
 
-              {/* card stack */}
               <div className="relative w-full h-full">
                 <AnimatePresence>
                   {cards.map((pet, i) => (
@@ -198,14 +189,18 @@ const Banner = () => {
                       className="absolute inset-0 w-full h-full"
                       style={{ transformOrigin: "bottom center" }}
                     >
-                      <div className={`w-full h-full rounded-3xl bg-gradient-to-br ${pet.bg} border border-white/80 flex flex-col overflow-hidden`}>
-                        {/* image area */}
-                        <div className="flex-1 flex items-center justify-center">
-                          <span className="text-8xl">{pet.emoji}</span>
+                      <div className="w-full h-full rounded-3xl border border-white/80 flex flex-col overflow-hidden shadow-md">
+                        {/* real pet image */}
+                        <div className="flex-1 overflow-hidden">
+                          <img
+                            src={pet.image}
+                            alt={pet.name}
+                            className="w-full h-full object-cover"
+                          />
                         </div>
 
                         {/* info strip */}
-                        <div className="bg-white/80 backdrop-blur-sm px-5 py-4 flex items-center justify-between">
+                        <div className="bg-white/90 backdrop-blur-sm px-5 py-4 flex items-center justify-between">
                           <div>
                             <p className="font-bold text-neutral-800 text-lg leading-tight">{pet.name}</p>
                             <p className="text-neutral-400 text-xs mt-0.5">{pet.age} · {pet.location}</p>
@@ -223,7 +218,8 @@ const Banner = () => {
               {/* manual next button */}
               <button
                 onClick={handleNext}
-                className="absolute -bottom-12 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 bg-white border border-neutral-200 hover:border-amber-300 hover:bg-amber-50 text-neutral-600 hover:text-amber-600 text-xs font-medium px-5 py-2 rounded-full transition-all duration-200 z-40"
+                className="absolute -bottom-12 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 bg-white border border-neutral-200 hover:border-amber-300 hover:bg-amber-50 text-neutral-600
+                cursor-pointer hover:text-amber-600 text-xs font-medium px-5 py-2 rounded-full transition-all duration-200 z-40"
               >
                 Next pet
                 <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
