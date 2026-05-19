@@ -80,7 +80,7 @@ const HowItWorks = () => {
 
               {/* connector line between cards — desktop only */}
               {step.connectorColor && (
-                <div className={`hidden lg:block absolute top-12 left-[calc(50%+56px)] w-[calc(100%-56px)] h-0.5 bg-gradient-to-r ${step.connectorColor} z-0`} />
+                <div className={`hidden lg:block absolute top-12 left-[calc(50%+56px)] w-[calc(100%-56px)] h-0.5 bg-linear-to-r ${step.connectorColor} z-0`} />
               )}
 
               {/* icon circle */}
@@ -94,7 +94,7 @@ const HowItWorks = () => {
 
               {/* text */}
               <h3 className="font-bold text-neutral-800 text-lg mb-2">{step.title}</h3>
-              <p className="text-neutral-500 text-sm leading-relaxed max-w-[200px]">{step.description}</p>
+              <p className="text-neutral-500 text-sm leading-relaxed max-w-50">{step.description}</p>
             </div>
           ))}
         </div>
@@ -107,7 +107,7 @@ const HowItWorks = () => {
           </div>
           <a
             href="/pets"
-            className="flex-shrink-0 inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-500 text-amber-900 font-semibold text-sm px-7 py-3 rounded-xl transition-colors duration-200"
+            className="shrink-0 inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-500 text-amber-900 font-semibold text-sm px-7 py-3 rounded-xl transition-colors duration-200"
           >
             Start Browsing
             <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
