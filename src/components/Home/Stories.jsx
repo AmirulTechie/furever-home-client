@@ -59,7 +59,7 @@ const stories = [
   },
   {
     quote: "Adopting Coco was the best gift we gave our daughter. She now has a best friend for life. The adoption request process was straightforward and took less than 5 minutes.",
-    name: "Farhan & Meghna",
+    name: "Shojib & Meghna",
     location: "Khulna, Bangladesh",
     pet: "Adopted Coco — Beagle",
     avatar: "FM",

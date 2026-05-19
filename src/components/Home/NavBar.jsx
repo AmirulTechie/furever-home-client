@@ -26,7 +26,7 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-white border-b border-neutral-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
 
-        <Link href="/" className="flex-shrink-0">
+        <Link href="/" className="shrink-0">
           <Image 
             src={'/assets/logo-compact.svg'}
             alt="logo"
