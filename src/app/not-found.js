@@ -11,7 +11,7 @@ const NotFound = () => {
         <circle cx="18" cy="14" r="7"/><circle cx="42" cy="14" r="7"/><circle cx="9" cy="28" r="5.5"/><circle cx="51" cy="28" r="5.5"/>
         <path d="M30 52 C16 52 10 40 13 30 C16 22 22 20 30 20 C38 20 44 22 47 30 C50 40 44 52 30 52Z"/>
       </svg>
-      <svg viewBox="0 0 60 60" className="absolute bottom-10 right-10 w-56 h-56 text-amber-100 fill-current rotate-[20deg] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 60 60" className="absolute bottom-10 right-10 w-56 h-56 text-amber-100 fill-current rotate-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="18" cy="14" r="7"/><circle cx="42" cy="14" r="7"/><circle cx="9" cy="28" r="5.5"/><circle cx="51" cy="28" r="5.5"/>
         <path d="M30 52 C16 52 10 40 13 30 C16 22 22 20 30 20 C38 20 44 22 47 30 C50 40 44 52 30 52Z"/>
       </svg>
