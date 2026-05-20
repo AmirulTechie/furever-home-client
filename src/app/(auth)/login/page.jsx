@@ -44,7 +44,7 @@ export default function LoginPage() {
       // The user password
       password: form.password,
       // A URL to redirect to after the user verifies their email (optional)
-      callbackURL: "/home",
+      callbackURL: "/",
       // remember the user session after the browser is closed. @default true
       rememberMe: true,
     });
