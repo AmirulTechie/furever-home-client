@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 
 const Logo = () => (
@@ -56,7 +57,7 @@ export default function RegisterPage() {
   const {name, email, photoURL, password} = form;
   const pw = password;
   const validations = {
-    length: pw.length >= 6,
+    length: pw.length >= 8,
     uppercase: /[A-Z]/.test(pw),
     lowercase: /[a-z]/.test(pw),
     match: pw === form.confirmPassword && form.confirmPassword.length > 0,
@@ -66,15 +67,32 @@ export default function RegisterPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!allValid) return;
-    else{
-        const { data, error } = await authClient.signUp.email({
-        email, // user email address
-        password, // user password -> min 8 characters by default
-        name, // user display name
-        photoURL, // User image URL (optional)
-        callbackURL: "/" // A URL to redirect to after the user verifies their email (optional)
-        });
-        }
+    
+    const payload = {
+      email,
+      password,
+      name,
+      callbackURL: "/login",
+    };
+
+    if (photoURL) {
+      payload.image = photoURL;
+    }
+
+    const { data, error } = await authClient.signUp.email(payload);
+    
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success("Registration successful!");
+      setForm({
+        name: "",
+        email: "",
+        photoURL: "",
+        password: "",
+        confirmPassword: "",
+      });
+    }
   };
 
   return (
@@ -239,7 +257,7 @@ export default function RegisterPage() {
               {/* password checklist — shows only when typing */}
               {form.password.length > 0 && (
                 <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-2.5 px-1">
-                  <CheckItem passed={validations.length}    text="At least 6 characters" />
+                  <CheckItem passed={validations.length}    text="At least 8 characters" />
                   <CheckItem passed={validations.uppercase} text="One uppercase letter" />
                   <CheckItem passed={validations.lowercase} text="One lowercase letter" />
                 </div>
