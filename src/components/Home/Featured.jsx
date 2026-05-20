@@ -11,7 +11,7 @@ const FeaturedPets = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/data.json")
+    fetch(process.env.NEXT_PUBLIC_API_URL)
       .then((res) => res.json())
       .then((data) => {
         // show first 6 pets for featured section
