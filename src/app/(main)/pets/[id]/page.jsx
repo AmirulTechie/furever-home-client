@@ -179,7 +179,6 @@ const Skeleton = () => (
 export default function PetDetailsPage({ params }) {
   // Next.js 15 — params is a Promise, must be unwrapped with use()
   const { id } = use(params);
-
   const [pet, setPet] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -188,7 +187,7 @@ export default function PetDetailsPage({ params }) {
   const user = null;
 
   useEffect(() => {
-    fetch("/data.json")
+    fetch(process.env.NEXT_PUBLIC_API_URL)
       .then((res) => res.json())
       .then((data) => {
         // match by _id or petName slug
@@ -229,7 +228,7 @@ export default function PetDetailsPage({ params }) {
 
   return (
     <>
-      <div className="min-h-screen bg-[#F7F5F0] py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-[#F7F5F0] py-12 px-4 sm:px-6 lg:px-8 ">
         <div className="max-w-5xl mx-auto">
 
           {/* back link */}
@@ -318,11 +317,11 @@ export default function PetDetailsPage({ params }) {
               <div className="flex flex-col sm:flex-row gap-3 mt-auto">
                 <button
                   onClick={handleAdoptClick}
-                  className="flex-1 bg-amber-400 hover:bg-amber-500 text-amber-900 font-bold text-base py-4 px-6 rounded-xl transition-all duration-200"
+                  className="flex-1 bg-amber-400 hover:bg-amber-500 text-amber-900 font-bold text-base py-4 px-6 rounded-xl transition-all duration-200 cursor-pointer"
                 >
                   Adopt {pet.petName}
                 </button>
-                <button className="sm:w-auto bg-amber-50 hover:bg-amber-100 text-amber-700 font-semibold border border-amber-200 text-base py-4 px-6 rounded-xl transition-all duration-200 flex justify-center items-center gap-2">
+                <button className="sm:w-auto bg-amber-50 hover:bg-amber-100 text-amber-700 font-semibold border border-amber-200 text-base py-4 px-6 rounded-xl transition-all duration-200 flex justify-center items-center gap-2 cursor-pointer">
                   <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                   </svg>

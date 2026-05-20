@@ -65,7 +65,7 @@ const PetCard = ({ pet }) => {
       </div>
 
       <Link
-        href={`/pets/${pet.petName.toLowerCase().replace(/\s+/g, "-")}`}
+        href={`/pets/${pet._id}`}
         className="block w-full text-center border-2 border-amber-400 hover:bg-amber-400 text-amber-700 hover:text-amber-900 font-semibold text-sm py-2.5 rounded-xl transition-all duration-200"
       >
         View Details

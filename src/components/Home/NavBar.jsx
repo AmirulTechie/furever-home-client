@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { signOut, useSession } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -31,16 +32,17 @@ const Navbar = () => {
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
-
+  const router = useRouter();
   const handleSignOut = async () => {
     await signOut({
   fetchOptions: {
     onSuccess: () => {
       setDropdownOpen(false);
       setMenuOpen(false);
-    },
-  },
-});
+      router.push('/login');
+        },
+        },
+      });
   };
 
   const avatarLetter =

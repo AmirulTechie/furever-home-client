@@ -1,5 +1,6 @@
 "use client";
 
+import { useSession } from "@/lib/auth-client";
 import Link from "next/link";
 
 const Logo = () => (
@@ -14,6 +15,8 @@ const Logo = () => (
     <text x="46" y="29" fontFamily="Arial, sans-serif" fontSize="11" fontWeight="400" fill="#EF9F27" letterSpacing="2">HOME</text>
   </svg>
 );
+
+
 
 const footerLinks = [
   {
@@ -86,9 +89,11 @@ const socialLinks = [
 ];
 
 const Footer = () => {
+  const { data: session, isPending } = useSession();
+  const user = session?.user;
   return (
     <>
-      {/* CTA Section */}
+    { !user &&
       <section className="bg-[#2C2C2A] py-20 relative overflow-hidden">
         {/* decorative paw watermarks */}
         <svg viewBox="0 0 60 60" className="absolute -top-6 -left-6 w-48 h-48 text-white/5 fill-current" xmlns="http://www.w3.org/2000/svg">
@@ -146,7 +151,8 @@ const Footer = () => {
           </div>
         </div>
       </section>
-
+      }
+      
       {/* Footer */}
       <footer className="bg-[#1E1D1A]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
