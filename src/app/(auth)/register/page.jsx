@@ -91,6 +91,7 @@ export default function RegisterPage() {
         photoURL: "",
         password: "",
         confirmPassword: "",
+        callbackURL: "/login",
       });
     }
   };

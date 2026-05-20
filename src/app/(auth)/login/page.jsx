@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 
 const Logo = () => (
   <svg width="160" height="32" viewBox="0 0 240 36" role="img" xmlns="http://www.w3.org/2000/svg">
@@ -34,9 +36,24 @@ export default function LoginPage() {
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // connect your auth logic here
+    const { data, error } = await authClient.signIn.email({
+      // The user email
+      email: form.email,
+      // The user password
+      password: form.password,
+      // A URL to redirect to after the user verifies their email (optional)
+      callbackURL: "/home",
+      // remember the user session after the browser is closed. @default true
+      rememberMe: true,
+    });
+
+    if (error){
+      console.error("Login error:", error);
+      toast.error(error.message || "An error occurred during login.");
+      return;
+    };
   };
 
   return (
