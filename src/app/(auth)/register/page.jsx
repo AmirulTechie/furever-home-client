@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
 
 const Logo = () => (
   <svg width="160" height="32" viewBox="0 0 240 36" role="img" xmlns="http://www.w3.org/2000/svg">
@@ -52,8 +53,8 @@ export default function RegisterPage() {
   });
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-
-  const pw = form.password;
+  const {name, email, photoURL, password} = form;
+  const pw = password;
   const validations = {
     length: pw.length >= 6,
     uppercase: /[A-Z]/.test(pw),
@@ -62,10 +63,18 @@ export default function RegisterPage() {
   };
   const allValid = Object.values(validations).every(Boolean);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!allValid) return;
-    // connect your auth logic here
+    else{
+        const { data, error } = await authClient.signUp.email({
+        email, // user email address
+        password, // user password -> min 8 characters by default
+        name, // user display name
+        photoURL, // User image URL (optional)
+        callbackURL: "/" // A URL to redirect to after the user verifies their email (optional)
+        });
+        }
   };
 
   return (
