@@ -227,7 +227,7 @@ export default function UpdateProfilePage() {
                 <button
                   type="submit"
                   disabled={loading || success}
-                  className={`flex-1 inline-flex items-center justify-center gap-2 font-semibold text-sm py-3.5 rounded-xl transition-colors duration-200 ${
+                  className={`flex-1 inline-flex items-center justify-center gap-2 font-semibold text-sm py-3.5 rounded-xl transition-colors duration-200 cursor-pointer ${
                     loading || success
                       ? "bg-neutral-100 text-neutral-400 cursor-not-allowed"
                       : "bg-amber-400 hover:bg-amber-500 text-amber-900"
@@ -251,7 +251,7 @@ export default function UpdateProfilePage() {
                   )}
                 </button>
                 <Link
-                  href="/profile"
+                  href="/my-profile"
                   className="inline-flex items-center justify-center gap-2 bg-white hover:bg-neutral-50 text-neutral-600 font-semibold text-sm px-6 py-3.5 rounded-xl border border-neutral-200 transition-colors duration-200"
                 >
                   Cancel

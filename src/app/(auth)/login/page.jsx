@@ -53,6 +53,7 @@ export default function LoginPage() {
       // remember the user session after the browser is closed. @default true
       rememberMe: true,
     });
+    
 
     if (error){
       console.error("Login error:", error);

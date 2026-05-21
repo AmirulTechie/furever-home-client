@@ -33,7 +33,7 @@ const Avatar = ({ user, size = "lg" }) => {
 
 const InfoRow = ({ icon, label, value }) => (
   <div className="flex items-start gap-4 py-4 border-b border-neutral-100 last:border-0">
-    <div className="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center text-amber-500 flex-shrink-0">
+    <div className="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center text-amber-500 shrink-0">
       {icon}
     </div>
     <div>
