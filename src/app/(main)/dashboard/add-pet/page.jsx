@@ -58,7 +58,7 @@ export default function AddPetPage() {
     const token = tokenData?.data?.token;
 
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/adoption-requests`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pets`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
