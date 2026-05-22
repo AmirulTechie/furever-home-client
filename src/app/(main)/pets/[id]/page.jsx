@@ -222,33 +222,38 @@ export default function PetDetailsPage({ params }) {
   const { data: session } = authClient.useSession();
   const user = session?.user || null;
 
-  useEffect(() => {
-    const fetchPet = async () => {
+useEffect(() => {
+  const fetchPet = async () => {
+    try {
+      let token = null;
       try {
         const tokenData = await authClient.token();
-        const token = tokenData?.data?.token;
-
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pets/${id}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const data = await res.json();
-        setPet(data);
+        token = tokenData?.data?.token;
       } catch {
-        try {
-          const res = await fetch(process.env.NEXT_PUBLIC_API_URL);
-          const data = await res.json();
-          const match = data.find((p) => p._id === id);
-          setPet(match || null);
-        } catch {
-          setPet(null);
-        }
-      } finally {
-        setLoading(false);
       }
-    };
 
-    fetchPet();
-  }, [id]);
+      const headers = token ? { Authorization: `Bearer ${token}` } : {};
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pets/${id}`, { headers });
+
+      if (!res.ok) throw new Error("fetch failed");
+
+      const data = await res.json();
+      setPet(data);
+    } catch {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pets`);
+        const data = await res.json();
+        setPet(data.find((p) => p._id === id) || null);
+      } catch {
+        setPet(null);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchPet();
+}, [id]);
 
   const isOwner = user && pet && user.email === pet.ownerEmail;
   const isAdopted = pet?.status === "adopted";
