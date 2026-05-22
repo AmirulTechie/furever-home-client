@@ -152,7 +152,8 @@ const AdoptionModal = ({ pet, user, onClose }) => {
             <input type="email" value={user?.email || ""} readOnly className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-neutral-50 text-neutral-400 text-sm cursor-not-allowed" />
           </div>
           <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Pickup Date</label>
+            <label className="block text-xs fon
+            t-semibold text-neutral-700 mb-1.5">Pickup Date</label>
             <input
               type="date"
               value={form.pickupDate}
