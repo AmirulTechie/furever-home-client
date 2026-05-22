@@ -6,7 +6,8 @@ const client = new MongoClient(process.env.MONGODB_URI);
 const db = client.db("fureverdb");
 
 export const auth = betterAuth({
-  baseURL: "http://localhost:3000",
+  trustedOrigins: ["https://furever-home-adopt.vercel.app"],
+  baseURL: process.env.BETTER_AUTH_URL,
   secret: process.env.BETTER_AUTH_SECRET,
   database: mongodbAdapter(db),
   emailAndPassword: {
