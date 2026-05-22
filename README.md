@@ -6,7 +6,7 @@ Pet Adoption Platform is a full-stack web application that allows users to explo
 
 ## Live URL
 
-[https://furever-home-adopt.vercel.app/](Furever-Home)
+[https://furever-home-adopt.vercel.app](https://furever-home-adopt.vercel.app)
 
 ## Features
 
