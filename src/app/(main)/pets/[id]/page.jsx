@@ -1,5 +1,7 @@
 "use client";
 
+
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { use, useEffect, useState } from "react";
 
@@ -59,7 +61,7 @@ const AdoptionModal = ({ pet, user, onClose }) => {
           </p>
           <button
             onClick={onClose}
-            className="w-full bg-amber-400 hover:bg-amber-500 text-amber-900 font-semibold text-sm py-3 rounded-xl transition-colors duration-200"
+            className="w-full bg-amber-400 hover:bg-amber-500 text-amber-900 font-semibold text-sm py-3 rounded-xl transition-colors duration-200 cursor-pointer"
           >
             Done
           </button>
@@ -100,7 +102,7 @@ const AdoptionModal = ({ pet, user, onClose }) => {
             <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Your Name</label>
             <input
               type="text"
-              value={user?.displayName || "Guest User"}
+              value={user?.name || "Guest User"}
               readOnly
               className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-neutral-50 text-neutral-400 text-sm cursor-not-allowed"
             />
@@ -144,7 +146,7 @@ const AdoptionModal = ({ pet, user, onClose }) => {
 
           <button
             type="submit"
-            className="w-full bg-amber-400 hover:bg-amber-500 text-amber-900 font-semibold text-sm py-3.5 rounded-xl transition-colors duration-200 mt-1"
+            className="w-full bg-amber-400 hover:bg-amber-500 text-amber-900 font-semibold text-sm py-3.5 rounded-xl transition-colors duration-200 mt-1 cursor-pointer"
           >
             Submit Adoption Request
           </button>
@@ -182,9 +184,26 @@ export default function PetDetailsPage({ params }) {
   const [pet, setPet] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const { data: session, isPending, error } = authClient.useSession();
+  const [token, setToken] = useState(null);
+useEffect(() => {
+  if (!token) return; // wait for token first
 
+  fetch(`${process.env.NEXT_PUBLIC_API_URL}/${id}`, {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      setPet(data);
+      setLoading(false);
+    })
+    .catch(() => setLoading(false));
+}, [id, token]); 
+  
   // Replace with your actual auth context
-  const user = null;
+  const user = session?.user || null;
 
   useEffect(() => {
     fetch(process.env.NEXT_PUBLIC_API_URL)

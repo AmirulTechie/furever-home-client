@@ -4,11 +4,8 @@ import { auth } from './lib/auth'
  
 export async function proxy(request) {
     const session = await auth.api.getSession({
-        query: {
-            disableCookieCache: true,
-        },
         headers: await headers(),
-    })
+    });
     if (!session && !session?.user) {
         return NextResponse.redirect(new URL('/login', request.url) );
     }
@@ -16,5 +13,11 @@ export async function proxy(request) {
  
  
 export const config = {
-  matcher: '/pets/:id*',
+  matcher: [
+    '/pets/:id+',
+    '/my-requests',
+    '/add-pet',
+    '/my-profile',
+    '/dashboard',
+  ]
 }

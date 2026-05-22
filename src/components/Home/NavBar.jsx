@@ -131,6 +131,17 @@ const Navbar = () => {
 
                   {/* Profile link */}
                   <Link
+                    href="/dashboard"
+                    onClick={() => setDropdownOpen(false)}
+                    className="flex items-center gap-2 px-4 py-2 text-neutral-600 hover:bg-neutral-50 hover:text-amber-500 transition-colors curseor-pointer  "
+                  >
+                    <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+                      <circle cx="7" cy="5" r="3" />
+                      <path d="M1 13c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+                    </svg>
+                    My Profile
+                  </Link>
+                  <Link
                     href="/my-profile"
                     onClick={() => setDropdownOpen(false)}
                     className="flex items-center gap-2 px-4 py-2 text-neutral-600 hover:bg-neutral-50 hover:text-amber-500 transition-colors curseor-pointer  "
@@ -231,6 +242,13 @@ const Navbar = () => {
                 </div>
               </div>
 
+              <Link
+                href="/dashboard"
+                onClick={() => setMenuOpen(false)}
+                className="text-sm text-neutral-600 hover:text-amber-500 transition-colors"
+              >
+                My Profile
+              </Link>
               <Link
                 href="/my-profile"
                 onClick={() => setMenuOpen(false)}
