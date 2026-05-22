@@ -14,7 +14,7 @@ export default function AllPetsPage() {
   const [sortBy, setSortBy] = useState("default");
 
   useEffect(() => {
-    fetch(process.env.NEXT_PUBLIC_API_URL)
+    fetch(process.env.NEXT_PUBLIC_API_URL + "/pets")
       .then((res) => res.json())
       .then((data) => {
         setAllPets(data);
