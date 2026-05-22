@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/set-state-in-effect */
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { authClient } from "@/lib/auth-client";
@@ -5,19 +7,19 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const statusStyle = {
-  pending: "bg-amber-50 text-amber-700 border-amber-200",
-  approved: "bg-teal-50 text-teal-700 border-teal-200",
-  rejected: "bg-rose-50 text-rose-700 border-rose-200",
+  pending: "bg-amber-50 text-amber-700 border-amber-200/80",
+  approved: "bg-emerald-50 text-emerald-700 border-emerald-200/80",
+  rejected: "bg-rose-50 text-rose-700 border-rose-200/80",
 };
 
 const SkeletonRow = () => (
-  <div className="flex items-center gap-4 p-4 bg-white border border-neutral-200 rounded-2xl animate-pulse">
-    <div className="w-14 h-14 bg-neutral-200 rounded-xl flex-shrink-0" />
+  <div className="flex items-center gap-4 p-5 bg-white border border-neutral-200/50 rounded-2xl animate-pulse">
+    <div className="w-12 h-12 bg-neutral-100 rounded-xl flex-shrink-0" />
     <div className="flex-1 space-y-2">
-      <div className="h-4 bg-neutral-200 rounded w-1/3" />
-      <div className="h-3 bg-neutral-200 rounded w-1/4" />
+      <div className="h-4 bg-neutral-100 rounded w-1/3" />
+      <div className="h-3 bg-neutral-100 rounded w-1/4" />
     </div>
-    <div className="h-6 w-20 bg-neutral-200 rounded-full" />
+    <div className="h-6 w-16 bg-neutral-100 rounded-full" />
   </div>
 );
 
@@ -47,7 +49,6 @@ export default function MyRequestsPage() {
   };
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchRequests();
   }, [user?.email]);
 
@@ -67,82 +68,74 @@ export default function MyRequestsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-50 px-6 py-10">
+    <div className="min-h-screen bg-neutral-50/40 px-6 py-12">
       <div className="max-w-4xl mx-auto">
-
-        {/* header */}
-        <div className="mb-8">
-          <span className="inline-flex items-center gap-1.5 bg-amber-500/10 border border-amber-500/20 text-amber-700 text-xs font-medium px-3 py-1 rounded-full mb-3">
-            <svg width="10" height="10" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-            My Requests
+        <div className="mb-8 border-b border-neutral-200/40 pb-6">
+          <span className="inline-flex items-center gap-1 bg-amber-500/10 border border-amber-500/20 text-amber-800 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
+            Inquiries Log
           </span>
-          <h1 className="text-3xl font-extrabold text-neutral-900">My Adoption Requests</h1>
-          <p className="text-neutral-500 text-sm mt-1">Track the status of all your adoption requests here.</p>
+          <h1 className="text-2xl font-black text-neutral-900 tracking-tight">My Adoption Requests</h1>
+          <p className="text-neutral-400 text-xs mt-1">Review, monitor, and manage ongoing animal placement inquiries.</p>
         </div>
 
-        {/* content */}
         {loading ? (
           <div className="flex flex-col gap-3">
             {[1, 2, 3].map((i) => <SkeletonRow key={i} />)}
           </div>
         ) : requests.length === 0 ? (
-          <div className="bg-white border border-neutral-200 rounded-2xl py-20 flex flex-col items-center text-center shadow-sm">
-            <div className="text-5xl mb-4">📋</div>
-            <h3 className="text-neutral-900 font-bold text-lg mb-2">No requests yet</h3>
-            <p className="text-neutral-500 text-sm mb-6">Browse available pets and submit your first adoption request.</p>
+          <div className="bg-white border border-neutral-200/60 rounded-2xl py-16 flex flex-col items-center text-center shadow-[0_4px_12px_rgba(0,0,0,0.01)]">
+            <div className="text-4xl mb-3 select-none">📋</div>
+            <h3 className="text-neutral-800 font-bold text-base mb-1">No requests logged</h3>
+            <p className="text-neutral-400 text-xs mb-5 max-w-sm">You haven't submitted any adoption inquiries yet. Discover pets looking for a home.</p>
             <Link
               href="/pets"
-              className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold text-sm px-6 py-3 rounded-xl transition-colors duration-200"
+              className="bg-amber-500 hover:bg-amber-600 text-white font-semibold text-xs px-5 py-2.5 rounded-full transition-colors shadow-sm"
             >
-              🐾 Browse Pets
+              Browse Registry
             </Link>
           </div>
         ) : (
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3.5">
             {requests.map((req) => (
               <div
                 key={req._id}
-                className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 bg-white border border-neutral-200 rounded-2xl hover:border-neutral-300 transition-all duration-200 shadow-sm"
+                className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 bg-white border border-neutral-200/60 rounded-2xl hover:shadow-[0_4px_12px_rgba(0,0,0,0.03)] transition-all duration-200"
               >
-                {/* pet image */}
-                <div className="w-14 h-14 rounded-xl overflow-hidden bg-neutral-100 border border-neutral-200 flex-shrink-0">
+                <div className="w-12 h-12 rounded-xl overflow-hidden bg-neutral-100 border border-neutral-200/40 flex-shrink-0 shadow-inner">
                   {req.petImage ? (
                     <img src={req.petImage} alt={req.petName} className="w-full h-full object-cover" />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-2xl">🐾</div>
+                    <div className="w-full h-full flex items-center justify-center text-xl bg-neutral-50">🐾</div>
                   )}
                 </div>
 
-                {/* info */}
                 <div className="flex-1 min-w-0">
-                  <p className="text-neutral-900 font-semibold text-sm">{req.petName}</p>
-                  <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1">
-                    <p className="text-neutral-500 text-xs">
-                      Requested: {new Date(req.createdAt).toLocaleDateString("en-GB")}
+                  <p className="text-neutral-800 font-bold text-sm tracking-tight">{req.petName}</p>
+                  <div className="flex flex-wrap gap-x-4 gap-y-0.5 mt-0.5">
+                    <p className="text-neutral-400 text-[11px]">
+                      Filed: <span className="font-medium text-neutral-500">{new Date(req.createdAt).toLocaleDateString("en-GB")}</span>
                     </p>
-                    <p className="text-neutral-500 text-xs">
-                      Pickup: {req.pickupDate}
+                    <p className="text-neutral-400 text-[11px]">
+                      Pickup: <span className="font-medium text-neutral-500">{req.pickupDate}</span>
                     </p>
                   </div>
                 </div>
 
-                {/* status */}
-                <span className={`text-xs font-semibold px-3 py-1 rounded-full border capitalize text-center sm:text-left ${statusStyle[req.status] || statusStyle.pending}`}>
-                  {req.status}
+                <span className={`text-[11px] font-bold px-2.5 py-1 rounded-md border capitalize self-start sm:self-auto text-center ${statusStyle[req.status] || statusStyle.pending}`}>
+                  • {req.status}
                 </span>
 
-                {/* actions */}
-                <div className="flex gap-2">
+                <div className="flex gap-2 border-t sm:border-t-0 border-neutral-100 pt-3 sm:pt-0 justify-end">
                   <Link
                     href={`/pets/${req.petId}`}
-                    className="inline-flex items-center justify-center gap-1.5 text-xs font-medium text-neutral-600 hover:text-neutral-900 border border-neutral-200 hover:bg-neutral-50 px-3 py-1.5 rounded-lg transition-all duration-200"
+                    className="inline-flex items-center justify-center text-xs font-semibold text-neutral-600 hover:text-neutral-900 border border-neutral-200 hover:bg-neutral-50 px-3 py-1.5 rounded-xl transition-colors"
                   >
-                    View
+                    View Card
                   </Link>
                   {req.status === "pending" && (
                     <button
                       onClick={() => handleCancel(req._id)}
-                      className="inline-flex items-center justify-center gap-1.5 text-xs font-medium text-rose-600 hover:text-rose-700 border border-rose-200 hover:bg-rose-50 px-3 py-1.5 rounded-lg transition-all duration-200 cursor-pointer"
+                      className="inline-flex items-center justify-center text-xs font-semibold text-rose-600 hover:text-rose-700 border border-rose-100 hover:bg-rose-50/40 px-3 py-1.5 rounded-xl transition-colors cursor-pointer"
                     >
                       Cancel
                     </button>

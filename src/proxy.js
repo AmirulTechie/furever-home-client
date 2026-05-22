@@ -19,5 +19,6 @@ export const config = {
     '/add-pet',
     '/my-profile',
     '/dashboard',
+    '/dashboard/:path+',
   ]
 }

@@ -44,19 +44,14 @@ export default function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { data, error } = await authClient.signIn.email({
-      // The user email
       email: form.email,
-      // The user password
       password: form.password,
-      // A URL to redirect to after the user verifies their email (optional)
       callbackURL: "/",
-      // remember the user session after the browser is closed. @default true
       rememberMe: true,
     });
     
 
     if (error){
-      console.error("Login error:", error);
       toast.error(error.message || "An error occurred during login.");
       return;
     };
@@ -65,7 +60,6 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-[#F7F5F0] flex flex-col relative overflow-hidden">
 
-      {/* bg paw watermarks */}
       <svg viewBox="0 0 60 60" className="absolute -top-8 -left-8 w-52 h-52 text-amber-100 fill-current rotate-[-15deg] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="18" cy="14" r="7"/><circle cx="42" cy="14" r="7"/><circle cx="9" cy="28" r="5.5"/><circle cx="51" cy="28" r="5.5"/>
         <path d="M30 52 C16 52 10 40 13 30 C16 22 22 20 30 20 C38 20 44 22 47 30 C50 40 44 52 30 52Z"/>
@@ -75,7 +69,6 @@ export default function LoginPage() {
         <path d="M30 52 C16 52 10 40 13 30 C16 22 22 20 30 20 C38 20 44 22 47 30 C50 40 44 52 30 52Z"/>
       </svg>
 
-      {/* top bar */}
       <div className="relative z-10 flex items-center justify-between px-6 py-5 max-w-7xl mx-auto w-full">
         <Link href="/">
           <Logo />
@@ -91,11 +84,9 @@ export default function LoginPage() {
         </Link>
       </div>
 
-      {/* form card */}
       <div className="relative z-10 flex flex-1 items-center justify-center px-4 py-10">
         <div className="w-full max-w-md bg-white rounded-3xl border border-neutral-100 p-8 shadow-sm">
 
-          {/* heading */}
           <div className="text-center mb-8">
             <span className="inline-block bg-amber-50 border border-amber-200 text-amber-700 text-xs font-medium px-4 py-1.5 rounded-full mb-4">
               Welcome back
@@ -108,7 +99,6 @@ export default function LoginPage() {
             </p>
           </div>
 
-          {/* google button */}
           <button
             type="button"
             className="w-full flex items-center justify-center gap-3 bg-white hover:bg-neutral-50 border border-neutral-200 text-neutral-700 font-medium text-sm py-3 rounded-xl transition-colors duration-200 mb-5 cursor-pointer"
@@ -123,17 +113,14 @@ export default function LoginPage() {
             Continue with Google
           </button>
 
-          {/* divider */}
           <div className="flex items-center gap-3 mb-5">
             <div className="flex-1 h-px bg-neutral-100" />
             <span className="text-neutral-400 text-xs">or continue with email</span>
             <div className="flex-1 h-px bg-neutral-100" />
           </div>
 
-          {/* form */}
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
-            {/* email */}
             <div>
               <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
                 Email address
@@ -156,7 +143,6 @@ export default function LoginPage() {
               </div>
             </div>
 
-            {/* password */}
             <div>
               <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
                 Password
@@ -186,7 +172,6 @@ export default function LoginPage() {
               </div>
             </div>
 
-            {/* submit */}
             <button
               type="submit"
               className="w-full bg-amber-400 hover:bg-amber-500 text-amber-900 font-semibold text-sm py-3.5 rounded-xl transition-colors duration-200 mt-1"
@@ -195,7 +180,6 @@ export default function LoginPage() {
             </button>
           </form>
 
-          {/* register link */}
           <p className="text-center text-sm text-neutral-500 mt-6">
             Don&apos;t have an account?{" "}
             <Link href="/register" className="text-amber-500 hover:text-amber-600 font-semibold transition-colors">

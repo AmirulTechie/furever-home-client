@@ -40,7 +40,6 @@ export default function AllPetsPage() {
   return (
     <div className="min-h-screen bg-[#F7F5F0]">
 
-      {/* page header */}
       <div className="bg-white border-b border-neutral-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <span className="inline-block bg-amber-50 border border-amber-200 text-amber-700 text-xs font-medium px-4 py-1.5 rounded-full mb-3">
@@ -57,10 +56,8 @@ export default function AllPetsPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-        {/* search + filter + sort bar */}
         <div className="bg-white rounded-2xl border border-neutral-100 p-4 mb-8 flex flex-col sm:flex-row gap-3">
 
-          {/* search */}
           <div className="relative flex-1">
             <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-400">
               <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
@@ -76,7 +73,6 @@ export default function AllPetsPage() {
             />
           </div>
 
-          {/* species filter */}
           <div className="relative">
             <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-400 pointer-events-none">
               <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
@@ -94,7 +90,6 @@ export default function AllPetsPage() {
             </select>
           </div>
 
-          {/* sort */}
           <div className="relative">
             <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-400 pointer-events-none">
               <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
@@ -114,7 +109,6 @@ export default function AllPetsPage() {
             </select>
           </div>
 
-          {/* clear filters */}
           {(search || selectedSpecies !== "All" || sortBy !== "default") && (
             <button
               onClick={() => { setSearch(""); setSelectedSpecies("All"); setSortBy("default"); }}
@@ -128,7 +122,6 @@ export default function AllPetsPage() {
           )}
         </div>
 
-        {/* species pill filters */}
         <div className="flex flex-wrap gap-2 mb-6">
           {speciesList.map((s) => (
             <button
@@ -145,7 +138,6 @@ export default function AllPetsPage() {
           ))}
         </div>
 
-        {/* grid */}
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)}

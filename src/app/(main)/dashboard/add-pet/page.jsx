@@ -57,12 +57,8 @@ export default function AddPetPage() {
     const tokenData = await authClient.token();
     const token = tokenData?.data?.token;
 
-    console.log("Token:", token);
-    console.log("User:", user);
-    console.log("Form:", form);
-    console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/adoption-requests`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,10 +71,8 @@ export default function AddPetPage() {
       }),
     });
 
-    console.log("Response status:", res.status);  // what status is coming back?
 
-    const data = await res.json();
-    console.log("Response data:", data);           // what is the server saying?
+    const data = await res.json();      
 
     if (!res.ok) {
       setError(data.message || "Failed to add pet. Please try again.");
@@ -88,7 +82,7 @@ export default function AddPetPage() {
 
     router.push("/pets");
   } catch (err) {
-    console.log("Caught error:", err);   // actual error message
+    
     setError("Something went wrong. Please try again.");
     setLoading(false);
   }
@@ -119,7 +113,6 @@ export default function AddPetPage() {
 
           <div className="p-8">
 
-            {/* image preview */}
             {form.imageURL && (
               <div className="mb-6">
                 <p className="text-xs font-semibold text-neutral-700 mb-2">Image Preview</p>
@@ -136,7 +129,6 @@ export default function AddPetPage() {
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
 
-              {/* row 1 — name + species */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <FormField label="Pet Name" required>
                   <input
@@ -166,7 +158,7 @@ export default function AddPetPage() {
                 </FormField>
               </div>
 
-              {/* row 2 — breed + age */}
+    
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <FormField label="Breed" required>
                   <input
@@ -193,7 +185,7 @@ export default function AddPetPage() {
                 </FormField>
               </div>
 
-              {/* row 3 — gender + adoption fee */}
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <FormField label="Gender" required>
                   <select
@@ -227,7 +219,6 @@ export default function AddPetPage() {
                 </FormField>
               </div>
 
-              {/* row 4 — health + vaccination */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <FormField label="Health Status" required>
                   <select
@@ -260,7 +251,6 @@ export default function AddPetPage() {
                 </FormField>
               </div>
 
-              {/* location */}
               <FormField label="Location" required>
                 <div className="relative">
                   <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-400">
@@ -280,7 +270,6 @@ export default function AddPetPage() {
                 </div>
               </FormField>
 
-              {/* image url */}
               <FormField
                 label="Image URL"
                 required
@@ -304,7 +293,6 @@ export default function AddPetPage() {
                 </div>
               </FormField>
 
-              {/* owner email — read only */}
               <FormField label="Owner Email">
                 <div className="relative">
                   <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-400">
@@ -321,7 +309,6 @@ export default function AddPetPage() {
                 </div>
               </FormField>
 
-              {/* description */}
               <FormField label="Description" required>
                 <textarea
                   name="description"
@@ -334,7 +321,6 @@ export default function AddPetPage() {
                 />
               </FormField>
 
-              {/* error */}
               {error && (
                 <div className="flex items-center gap-2 bg-rose-50 border border-rose-200 text-rose-600 text-sm font-medium px-4 py-3 rounded-xl">
                   <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
@@ -344,7 +330,6 @@ export default function AddPetPage() {
                 </div>
               )}
 
-              {/* actions */}
               <div className="flex gap-3 pt-2">
                 <button
                   type="submit"

@@ -24,7 +24,6 @@ const StatRow = ({ icon, label, value }) => (
   </div>
 );
 
-// ── Owner Notice Modal ────────────────────────────────────────────────────────
 const OwnerModal = ({ pet, onClose }) => (
   <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-black/40 backdrop-blur-sm">
     <div className="bg-white rounded-3xl p-8 max-w-sm w-full text-center border border-neutral-100">
@@ -51,7 +50,6 @@ const OwnerModal = ({ pet, onClose }) => (
   </div>
 );
 
-// ── Adoption Modal ────────────────────────────────────────────────────────────
 const AdoptionModal = ({ pet, user, onClose }) => {
   const today = new Date().toISOString().split("T")[0];
   const [form, setForm] = useState({ pickupDate: "", message: "" });
@@ -195,7 +193,6 @@ const AdoptionModal = ({ pet, user, onClose }) => {
   );
 };
 
-// ── Skeleton ──────────────────────────────────────────────────────────────────
 const Skeleton = () => (
   <div className="min-h-screen bg-[#F7F5F0] py-12 px-4 sm:px-6 lg:px-8 animate-pulse">
     <div className="max-w-5xl mx-auto">
@@ -216,7 +213,6 @@ const Skeleton = () => (
   </div>
 );
 
-// ── Main Page ─────────────────────────────────────────────────────────────────
 export default function PetDetailsPage({ params }) {
   const { id } = use(params);
   const [pet, setPet] = useState(null);
@@ -238,7 +234,6 @@ export default function PetDetailsPage({ params }) {
         const data = await res.json();
         setPet(data);
       } catch {
-        // try public fallback
         try {
           const res = await fetch(process.env.NEXT_PUBLIC_API_URL);
           const data = await res.json();
@@ -297,7 +292,6 @@ export default function PetDetailsPage({ params }) {
           </Link>
 
           <div className="bg-white rounded-3xl overflow-hidden border border-neutral-100 shadow-sm flex flex-col lg:flex-row">
-            {/* image */}
             <div className="lg:w-1/2 relative h-80 lg:h-auto min-h-[400px]">
               <img src={pet.imageURL} alt={pet.petName} className="w-full h-full object-cover" />
               {pet.vaccinationStatus === "Fully Vaccinated" && (
@@ -317,7 +311,6 @@ export default function PetDetailsPage({ params }) {
               </div>
             </div>
 
-            {/* info */}
             <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col">
               <h1 className="text-4xl font-extrabold text-neutral-800 tracking-tight mb-2">{pet.petName}</h1>
 

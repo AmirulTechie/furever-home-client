@@ -46,7 +46,6 @@ export default function UpdateProfilePage() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
-  // populate form once session loads
   if (user && !initialized) {
     setForm({
       displayName: user.name || "",
@@ -99,7 +98,6 @@ export default function UpdateProfilePage() {
     <div className="min-h-screen bg-[#F7F5F0]">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-        {/* breadcrumb */}
         <div className="flex items-center gap-2 text-xs text-neutral-400 mb-8">
           <Link href="/" className="hover:text-amber-500 transition-colors">Home</Link>
           <span>/</span>
@@ -110,7 +108,6 @@ export default function UpdateProfilePage() {
 
         <div className="bg-white rounded-3xl border border-neutral-100 overflow-hidden">
 
-          {/* header strip */}
           <div className="bg-amber-400 px-8 py-6">
             <h1 className="text-2xl font-extrabold text-amber-900">Update Profile</h1>
             <p className="text-amber-800 text-sm mt-1">Keep your information up to date</p>
@@ -118,7 +115,6 @@ export default function UpdateProfilePage() {
 
           <div className="p-8">
 
-            {/* avatar preview */}
             <div className="flex items-center gap-5 mb-8 pb-8 border-b border-neutral-100">
               <div className="relative">
                 <Avatar user={user} previewUrl={form.photoURL} />
@@ -137,7 +133,6 @@ export default function UpdateProfilePage() {
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
 
-              {/* name */}
               <div>
                 <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Full Name</label>
                 <div className="relative">
@@ -158,7 +153,6 @@ export default function UpdateProfilePage() {
                 </div>
               </div>
 
-              {/* email — read only */}
               <div>
                 <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
                   Email Address
@@ -179,7 +173,6 @@ export default function UpdateProfilePage() {
                 </div>
               </div>
 
-              {/* photo url */}
               <div>
                 <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Photo URL</label>
                 <div className="relative">
@@ -202,7 +195,6 @@ export default function UpdateProfilePage() {
                 </p>
               </div>
 
-              {/* error */}
               {error && (
                 <div className="flex items-center gap-2 bg-rose-50 border border-rose-200 text-rose-600 text-sm font-medium px-4 py-3 rounded-xl">
                   <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
@@ -212,7 +204,6 @@ export default function UpdateProfilePage() {
                 </div>
               )}
 
-              {/* success */}
               {success && (
                 <div className="flex items-center gap-2 bg-teal-50 border border-teal-200 text-teal-700 text-sm font-medium px-4 py-3 rounded-xl">
                   <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
@@ -222,7 +213,6 @@ export default function UpdateProfilePage() {
                 </div>
               )}
 
-              {/* actions */}
               <div className="flex gap-3 pt-2">
                 <button
                   type="submit"

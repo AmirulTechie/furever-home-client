@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 const steps = [
   {
     number: "01",
@@ -59,8 +61,6 @@ const HowItWorks = () => {
   return (
     <section className="bg-white py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* header */}
         <div className="text-center mb-16">
           <span className="inline-block bg-amber-50 border border-amber-200 text-amber-700 text-xs font-medium px-4 py-1.5 rounded-full mb-4">
             How it works
@@ -73,39 +73,30 @@ const HowItWorks = () => {
           </p>
         </div>
 
-        {/* steps */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
           {steps.map((step, i) => (
             <div key={i} className="relative flex flex-col items-center text-center group">
-
-              {/* connector line between cards — desktop only */}
               {step.connectorColor && (
-                <div className={`hidden lg:block absolute top-12 left-[calc(50%+56px)] w-[calc(100%-56px)] h-0.5 bg-linear-to-r ${step.connectorColor} z-0`} />
+                <div className={`hidden lg:block absolute top-12 left-[calc(50%+56px)] w-[calc(100%-56px)] h-0.5 bg-gradient-to-r ${step.connectorColor} z-0`} />
               )}
-
-              {/* icon circle */}
               <div className={`relative z-10 w-24 h-24 rounded-2xl ${step.iconBg} flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-200`}>
                 {step.icon}
-                {/* step number badge */}
                 <span className={`absolute -top-2 -right-2 w-7 h-7 rounded-full text-xs font-bold flex items-center justify-center ${step.badgeColor}`}>
                   {i + 1}
                 </span>
               </div>
-
-              {/* text */}
               <h3 className="font-bold text-neutral-800 text-lg mb-2">{step.title}</h3>
               <p className="text-neutral-500 text-sm leading-relaxed max-w-50">{step.description}</p>
             </div>
           ))}
         </div>
 
-        {/* bottom CTA strip */}
         <div className="mt-16 bg-[#F7F5F0] rounded-2xl px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
             <p className="font-bold text-neutral-800 text-lg">Ready to find your companion?</p>
             <p className="text-neutral-500 text-sm mt-0.5">Hundreds of pets are waiting for a loving home right now.</p>
           </div>
-          <a
+          <Link
             href="/pets"
             className="shrink-0 inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-500 text-amber-900 font-semibold text-sm px-7 py-3 rounded-xl transition-colors duration-200"
           >
@@ -113,9 +104,8 @@ const HowItWorks = () => {
             <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
-          </a>
+          </Link>
         </div>
-
       </div>
     </section>
   );

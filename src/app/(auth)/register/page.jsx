@@ -106,7 +106,6 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen bg-[#F7F5F0] flex flex-col relative overflow-hidden">
 
-      {/* bg paw watermarks */}
       <svg viewBox="0 0 60 60" className="absolute -top-8 -left-8 w-52 h-52 text-amber-100 fill-current rotate-[-15deg] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="18" cy="14" r="7"/><circle cx="42" cy="14" r="7"/><circle cx="9" cy="28" r="5.5"/><circle cx="51" cy="28" r="5.5"/>
         <path d="M30 52 C16 52 10 40 13 30 C16 22 22 20 30 20 C38 20 44 22 47 30 C50 40 44 52 30 52Z"/>
@@ -116,7 +115,6 @@ export default function RegisterPage() {
         <path d="M30 52 C16 52 10 40 13 30 C16 22 22 20 30 20 C38 20 44 22 47 30 C50 40 44 52 30 52Z"/>
       </svg>
 
-      {/* top bar */}
       <div className="relative z-10 flex items-center justify-between px-6 py-5 max-w-7xl mx-auto w-full">
         <Link href="/">
           <Logo />
@@ -132,11 +130,9 @@ export default function RegisterPage() {
         </Link>
       </div>
 
-      {/* form card */}
       <div className="relative z-10 flex flex-1 items-center justify-center px-4 py-10">
         <div className="w-full max-w-md bg-white rounded-3xl border border-neutral-100 p-8 shadow-sm">
 
-          {/* heading */}
           <div className="text-center mb-8">
             <span className="inline-block bg-teal-50 border border-teal-200 text-teal-700 text-xs font-medium px-4 py-1.5 rounded-full mb-4">
               Join FurEver Home
@@ -149,7 +145,6 @@ export default function RegisterPage() {
             </p>
           </div>
 
-          {/* google button */}
           <button
             type="button"
             className="w-full flex items-center justify-center gap-3 bg-white hover:bg-neutral-50 border border-neutral-200 text-neutral-700 font-medium text-sm py-3 rounded-xl transition-colors duration-200 mb-5 cursor-pointer"
@@ -164,17 +159,14 @@ export default function RegisterPage() {
             Continue with Google
           </button>
 
-          {/* divider */}
           <div className="flex items-center gap-3 mb-5">
             <div className="flex-1 h-px bg-neutral-100" />
             <span className="text-neutral-400 text-xs">or register with email</span>
             <div className="flex-1 h-px bg-neutral-100" />
           </div>
 
-          {/* form */}
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
-            {/* name */}
             <div>
               <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Full Name</label>
               <div className="relative">
@@ -195,7 +187,6 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            {/* email */}
             <div>
               <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Email Address</label>
               <div className="relative">
@@ -216,7 +207,6 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            {/* photo url */}
             <div>
               <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Photo URL</label>
               <div className="relative">
@@ -236,7 +226,6 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            {/* password */}
             <div>
               <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Password</label>
               <div className="relative">
@@ -263,7 +252,6 @@ export default function RegisterPage() {
                 </button>
               </div>
 
-              {/* password checklist — shows only when typing */}
               {form.password.length > 0 && (
                 <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-2.5 px-1">
                   <CheckItem passed={validations.length}    text="At least 8 characters" />
@@ -273,7 +261,6 @@ export default function RegisterPage() {
               )}
             </div>
 
-            {/* confirm password */}
             <div>
               <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Confirm Password</label>
               <div className="relative">
@@ -306,7 +293,6 @@ export default function RegisterPage() {
               )}
             </div>
 
-            {/* submit */}
             <button
               type="submit"
               disabled={!allValid}
@@ -320,7 +306,6 @@ export default function RegisterPage() {
             </button>
           </form>
 
-          {/* login link */}
           <p className="text-center text-sm text-neutral-500 mt-6">
             Already have an account?{" "}
             <Link href="/login" className="text-amber-500 hover:text-amber-600 font-semibold transition-colors">

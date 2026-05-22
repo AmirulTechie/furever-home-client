@@ -103,7 +103,6 @@ export default function MyProfilePage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-          {/* left — profile card */}
           <div className="lg:col-span-1 flex flex-col gap-6">
             <div className="bg-white rounded-3xl border border-neutral-100 p-6 flex flex-col items-center text-center">
               <div className="relative mb-4">
@@ -135,7 +134,6 @@ export default function MyProfilePage() {
               </div>
             </div>
 
-            {/* member since */}
             <div className="bg-white rounded-2xl border border-neutral-100 px-5 py-4 flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-teal-50 flex items-center justify-center text-teal-500">
                 <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
@@ -149,7 +147,6 @@ export default function MyProfilePage() {
             </div>
           </div>
 
-          {/* right — details + stats */}
           <div className="lg:col-span-2 flex flex-col gap-6">
 
             <div className="grid grid-cols-3 gap-4">

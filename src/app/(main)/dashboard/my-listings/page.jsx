@@ -6,7 +6,6 @@ import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-// ── Requests Modal ────────────────────────────────────────────────────────────
 const RequestsModal = ({ pet, onClose, onUpdate }) => {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -45,7 +44,6 @@ const RequestsModal = ({ pet, onClose, onUpdate }) => {
       );
       if (decision === "approved") onUpdate();
     } catch {
-      // fail silently
     }
   };
 
@@ -118,7 +116,6 @@ const RequestsModal = ({ pet, onClose, onUpdate }) => {
   );
 };
 
-// ── Delete Confirm Modal ──────────────────────────────────────────────────────
 const DeleteModal = ({ pet, onClose, onDeleted }) => {
   const [loading, setLoading] = useState(false);
 
@@ -165,14 +162,13 @@ const DeleteModal = ({ pet, onClose, onDeleted }) => {
   );
 };
 
-// ── Main Page ─────────────────────────────────────────────────────────────────
 export default function MyListingsPage() {
   const { data: session } = authClient.useSession();
   const user = session?.user;
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [requestsModal, setRequestsModal] = useState(null); // pet object
-  const [deleteModal, setDeleteModal] = useState(null);     // pet object
+  const [requestsModal, setRequestsModal] = useState(null);
+  const [deleteModal, setDeleteModal] = useState(null);   
 
   const fetchPets = async () => {
     if (!user?.email) return;
@@ -204,8 +200,6 @@ export default function MyListingsPage() {
   return (
     <div className="min-h-screen bg-neutral-50 px-6 py-10">
       <div className="max-w-4xl mx-auto">
-
-        {/* header */}
         <div className="mb-6">
           <span className="inline-flex items-center gap-1.5 bg-teal-50 border border-teal-200 text-teal-700 text-xs font-medium px-3 py-1 rounded-full mb-3">
             My Listings
@@ -213,8 +207,6 @@ export default function MyListingsPage() {
           <h1 className="text-3xl font-extrabold text-neutral-900">My Pet Listings</h1>
           <p className="text-neutral-500 text-sm mt-1">Manage the pets you've listed for adoption.</p>
         </div>
-
-        {/* stats */}
         {!loading && pets.length > 0 && (
           <div className="grid grid-cols-3 gap-3 mb-8">
             {[
@@ -230,7 +222,6 @@ export default function MyListingsPage() {
           </div>
         )}
 
-        {/* content */}
         {loading ? (
           <div className="flex flex-col gap-3">
             {[1, 2, 3].map((i) => (
@@ -256,7 +247,6 @@ export default function MyListingsPage() {
                 key={pet._id}
                 className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 bg-white border border-neutral-200 rounded-2xl hover:border-neutral-300 transition-all duration-200 shadow-sm"
               >
-                {/* image */}
                 <div className="w-16 h-16 rounded-xl overflow-hidden bg-neutral-100 border border-neutral-200 flex-shrink-0">
                   <img src={pet.imageURL} alt={pet.petName} className="w-full h-full object-cover" />
                 </div>
@@ -273,7 +263,6 @@ export default function MyListingsPage() {
                   <p className="text-amber-600 text-xs font-semibold mt-0.5">${pet.adoptionFee}</p>
                 </div>
 
-                {/* actions */}
                 <div className="flex flex-wrap gap-2">
                   <button
                     onClick={() => setRequestsModal(pet)}
