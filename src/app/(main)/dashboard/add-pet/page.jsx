@@ -80,7 +80,7 @@ export default function AddPetPage() {
       return;
     }
     toast.success("Pet added successfully!");
-    router.push("/pets");
+    router.push("/dashboard/my-listings");
   } catch (err) {
     
     setError("Something went wrong. Please try again.");
