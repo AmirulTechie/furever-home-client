@@ -79,7 +79,7 @@ export default function AddPetPage() {
       setLoading(false);
       return;
     }
-
+    toast.success("Pet added successfully!");
     router.push("/pets");
   } catch (err) {
     
