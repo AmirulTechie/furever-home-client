@@ -14,28 +14,29 @@ export default function AllPetsPage() {
   const [sortBy, setSortBy] = useState("default");
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/pets`)
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setLoading(true);
+
+    const params = new URLSearchParams();
+    if (search) params.append("search", search);
+    if (selectedSpecies !== "All") params.append("species", selectedSpecies);
+
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/pets?${params.toString()}`)
       .then((res) => res.json())
       .then((data) => {
         setAllPets(data);
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, []);
+  }, [search, selectedSpecies]);
 
-  const filtered = allPets
-    .filter((pet) => {
-      const matchSearch = pet.petName.toLowerCase().includes(search.toLowerCase());
-      const matchSpecies = selectedSpecies === "All" || pet.species === selectedSpecies;
-      return matchSearch && matchSpecies;
-    })
-    .sort((a, b) => {
-      if (sortBy === "fee-asc") return a.adoptionFee - b.adoptionFee;
-      if (sortBy === "fee-desc") return b.adoptionFee - a.adoptionFee;
-      if (sortBy === "name-asc") return a.petName.localeCompare(b.petName);
-      if (sortBy === "name-desc") return b.petName.localeCompare(a.petName);
-      return 0;
-    });
+  const filtered = [...allPets].sort((a, b) => {
+    if (sortBy === "fee-asc") return a.adoptionFee - b.adoptionFee;
+    if (sortBy === "fee-desc") return b.adoptionFee - a.adoptionFee;
+    if (sortBy === "name-asc") return a.petName.localeCompare(b.petName);
+    if (sortBy === "name-desc") return b.petName.localeCompare(a.petName);
+    return 0;
+  });
 
   return (
     <div className="min-h-screen bg-[#F7F5F0]">
@@ -82,7 +83,7 @@ export default function AllPetsPage() {
             <select
               value={selectedSpecies}
               onChange={(e) => setSelectedSpecies(e.target.value)}
-              className="pl-10 pr-8 py-2.5 rounded-xl border border-neutral-200 bg-[#F7F5F0] text-neutral-700 text-sm focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all duration-200 appearance-none  hover:cursor-pointer"
+              className="pl-10 pr-8 py-2.5 rounded-xl border border-neutral-200 bg-[#F7F5F0] text-neutral-700 text-sm focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all duration-200 appearance-none hover:cursor-pointer"
             >
               {speciesList.map((s) => (
                 <option key={s} value={s}>{s === "All" ? "All Species" : s}</option>
