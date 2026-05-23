@@ -1,8 +1,8 @@
-# Pet Adoption Platform - Client
+# Furever Home - Client
 
 ## Purpose
 
-Pet Adoption Platform is a full-stack web application that allows users to explore pets available for adoption, view detailed pet profiles, and submit adoption requests. The platform connects pet owners or shelters with potential adopters through a clean, responsive interface.
+Furever-Home is a full-stack web application that allows users to explore pets available for adoption, view detailed pet profiles, and submit adoption requests. The platform connects pet owners or shelters with potential adopters through a clean, responsive interface.
 
 ## Live URL
 
