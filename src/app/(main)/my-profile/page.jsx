@@ -189,8 +189,8 @@ export default function MyProfilePage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   { label: "My Pet Listings", href: "/dashboard/my-listings", emoji: "🐾", desc: "Manage pets you listed" },
-                  { label: "My Requests", href: "/my-requests", emoji: "📋", desc: "Track adoption requests" },
-                  { label: "Add a Pet", href: "/add-pet", emoji: "➕", desc: "List a new pet" },
+                  { label: "My Requests", href: "/dashboard/my-requests", emoji: "📋", desc: "Track adoption requests" },
+                  { label: "Add a Pet", href: "/dashboard/add-pet", emoji: "➕", desc: "List a new pet" },
                   { label: "Browse All Pets", href: "/pets", emoji: "🔍", desc: "Find a companion" },
                 ].map((item, i) => (
                   <Link

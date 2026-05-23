@@ -24,8 +24,8 @@ const footerLinks = [
     links: [
       { label: "Home", href: "/" },
       { label: "All Pets", href: "/pets" },
-      { label: "Add a Pet", href: "/add-pet" },
-      { label: "My Requests", href: "/my-requests" },
+      { label: "Add a Pet", href: "/dashboard/add-pet" },
+      { label: "My Requests", href: "/dashboard/my-requests" },
       { label: "Dashboard", href: "/dashboard" },
     ],
   },
