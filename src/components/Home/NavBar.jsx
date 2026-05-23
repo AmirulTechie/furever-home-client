@@ -174,7 +174,7 @@ const Navbar = () => {
               href="/login"
               className="bg-amber-500 hover:bg-amber-600 active:bg-amber-700 text-white font-semibold text-sm px-5 py-2 rounded-full shadow-[0_2px_10px_rgba(245,158,11,0.2)] transition-all duration-200"
             >
-              Get Started
+              Login
             </Link>
           )}
         </div>
@@ -270,7 +270,7 @@ const Navbar = () => {
               onClick={() => setMenuOpen(false)}
               className="bg-amber-500 hover:bg-amber-600 text-white font-semibold text-sm py-3 rounded-xl text-center transition-colors shadow-md mt-2"
             >
-              Get Started
+              Login
             </Link>
           )}
         </div>
